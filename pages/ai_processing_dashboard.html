@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Processing Dashboard - Magic Resume</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <meta name="description" content="Real-time AI processing dashboard for resume optimization and analysis.">
+</head>
+<body class="bg-background text-text-primary">
+    <!-- Global Header Navigation -->
+    <header class="sticky top-0 z-50 bg-surface/95 backdrop-blur-sm border-b border-border">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="landing_page.html" class="flex items-center space-x-2">
+                        <svg class="w-8 h-8 text-primary" viewBox="0 0 32 32" fill="currentColor">
+                            <path d="M16 2L20 6H28V26H4V6H12L16 2Z"/>
+                            <path d="M8 12H24M8 16H20M8 20H16" stroke="white" stroke-width="1.5" fill="none"/>
+                        </svg>
+                        <span class="text-xl font-semibold text-text-primary">Magic Resume</span>
+                    </a>
+                </div>
+
+                <!-- Progress Breadcrumb -->
+                <div class="hidden md:flex items-center space-x-2 text-sm">
+                    <span class="text-accent">Upload</span>
+                    <svg class="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                    <span class="text-primary font-medium">Processing</span>
+                    <svg class="w-4 h-4 text-secondary-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                    <span class="text-secondary-300">Review</span>
+                </div>
+
+                <!-- Help Button -->
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 rounded-lg hover:bg-secondary-100 transition-colors touch-target" title="Help">
+                        <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Main Processing Area -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Progress Circle Section -->
+                <section class="card p-8 text-center">
+                    <h1 class="text-2xl sm:text-3xl font-bold text-text-primary mb-8">
+                        AI is Analyzing Your Documents
+                    </h1>
+                    
+                    <!-- Large Progress Circle -->
+                    <div class="relative w-48 h-48 mx-auto mb-8">
+                        <svg class="w-48 h-48 transform -rotate-90" viewBox="0 0 200 200">
+                            <!-- Background circle -->
+                            <circle cx="100" cy="100" r="80" stroke="#E2E8F0" stroke-width="8" fill="none"/>
+                            <!-- Progress circle -->
+                            <circle cx="100" cy="100" r="80" stroke="#2563EB" stroke-width="8" fill="none" 
+                                    stroke-dasharray="502.65" stroke-dashoffset="251.33" 
+                                    class="transition-all duration-1000 ease-out" id="progress-circle"/>
+                        </svg>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <span class="text-4xl font-bold text-primary" id="progress-percentage">50%</span>
+                            <span class="text-sm text-text-secondary">Complete</span>
+                        </div>
+                    </div>
+
+                    <!-- Time Remaining -->
+                    <div class="mb-8">
+                        <p class="text-lg text-text-secondary mb-2">Estimated time remaining</p>
+                        <p class="text-2xl font-semibold text-text-primary" id="time-remaining">2 minutes 30 seconds</p>
+                    </div>
+
+                    <!-- Cancel Button -->
+                    <a href="file_upload_interface.html" class="btn-secondary hover-scale">
+                        Cancel Processing
+                    </a>
+                </section>
+
+                <!-- Step-by-Step Progress -->
+                <section class="card p-6">
+                    <h2 class="text-xl font-semibold text-text-primary mb-6">Processing Steps</h2>
+                    <div class="space-y-4">
+                        <!-- Step 1: Document Parsing -->
+                        <div class="flex items-center space-x-4 p-4 rounded-lg bg-accent-50 border border-accent">
+                            <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center">
+                                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-medium text-text-primary">Document Parsing</h3>
+                                <p class="text-sm text-text-secondary">Extracting text and structure from uploaded files</p>
+                            </div>
+                            <span class="text-sm font-medium text-accent">Complete</span>
+                        </div>
+
+                        <!-- Step 2: Content Extraction -->
+                        <div class="flex items-center space-x-4 p-4 rounded-lg bg-primary-50 border border-primary">
+                            <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center animate-pulse-gentle">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-medium text-text-primary">Content Extraction</h3>
+                                <p class="text-sm text-text-secondary">Identifying work experience, education, and skills</p>
+                            </div>
+                            <span class="text-sm font-medium text-primary">Processing</span>
+                        </div>
+
+                        <!-- Step 3: Skills Identification -->
+                        <div class="flex items-center space-x-4 p-4 rounded-lg bg-secondary-100 border border-secondary-200">
+                            <div class="w-8 h-8 bg-secondary-300 rounded-full flex items-center justify-center">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-medium text-text-secondary">Skills Identification</h3>
+                                <p class="text-sm text-text-secondary">Analyzing and categorizing technical and soft skills</p>
+                            </div>
+                            <span class="text-sm font-medium text-secondary">Pending</span>
+                        </div>
+
+                        <!-- Step 4: Experience Consolidation -->
+                        <div class="flex items-center space-x-4 p-4 rounded-lg bg-secondary-100 border border-secondary-200">
+                            <div class="w-8 h-8 bg-secondary-300 rounded-full flex items-center justify-center">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-medium text-text-secondary">Experience Consolidation</h3>
+                                <p class="text-sm text-text-secondary">Merging and organizing work history from all documents</p>
+                            </div>
+                            <span class="text-sm font-medium text-secondary">Pending</span>
+                        </div>
+
+                        <!-- Step 5: Optimization Generation -->
+                        <div class="flex items-center space-x-4 p-4 rounded-lg bg-secondary-100 border border-secondary-200">
+                            <div class="w-8 h-8 bg-secondary-300 rounded-full flex items-center justify-center">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-medium text-text-secondary">Optimization Generation</h3>
+                                <p class="text-sm text-text-secondary">Creating ATS-friendly optimized resume</p>
+                            </div>
+                            <span class="text-sm font-medium text-secondary">Pending</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Live Activity Feed -->
+                <section class="card p-6">
+                    <h2 class="text-xl font-semibold text-text-primary mb-6">Live Activity</h2>
+                    <div class="space-y-3 max-h-64 overflow-y-auto">
+                        <div class="flex items-start space-x-3 p-3 bg-accent-50 rounded-lg">
+                            <div class="w-2 h-2 bg-accent rounded-full mt-2 animate-pulse-gentle"></div>
+                            <div>
+                                <p class="text-sm text-text-primary">Extracting work experience from Resume_2023.pdf</p>
+                                <p class="text-xs text-text-secondary">Just now</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3 p-3 bg-primary-50 rounded-lg">
+                            <div class="w-2 h-2 bg-primary rounded-full mt-2"></div>
+                            <div>
+                                <p class="text-sm text-text-primary">Identified 15 technical skills across documents</p>
+                                <p class="text-xs text-text-secondary">30 seconds ago</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3 p-3 bg-secondary-100 rounded-lg">
+                            <div class="w-2 h-2 bg-secondary rounded-full mt-2"></div>
+                            <div>
+                                <p class="text-sm text-text-primary">Parsed CoverLetter_Generic.docx successfully</p>
+                                <p class="text-xs text-text-secondary">1 minute ago</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3 p-3 bg-secondary-100 rounded-lg">
+                            <div class="w-2 h-2 bg-secondary rounded-full mt-2"></div>
+                            <div>
+                                <p class="text-sm text-text-primary">Processing started for 3 uploaded documents</p>
+                                <p class="text-xs text-text-secondary">2 minutes ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Panel - File Summary & Tips -->
+            <div class="lg:col-span-1 space-y-6">
+                <!-- Uploaded Files Summary -->
+                <section class="card p-6">
+                    <h2 class="text-lg font-semibold text-text-primary mb-4">Uploaded Documents</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3 p-3 bg-accent-50 rounded-lg border border-accent">
+                            <img src="https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?auto=compress&cs=tinysrgb&w=400" 
+                                 alt="Resume document" 
+                                 class="w-10 h-10 object-cover rounded"
+                                 onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                            <div class="flex-1">
+                                <p class="font-medium text-text-primary text-sm">Resume_2023.pdf</p>
+                                <p class="text-xs text-accent">Processing Complete</p>
+                            </div>
+                            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+
+                        <div class="flex items-center space-x-3 p-3 bg-primary-50 rounded-lg border border-primary">
+                            <img src="https://images.pixabay.com/photo/2017/06/20/08/12/maintenance-2424025_960_720.jpg" 
+                                 alt="Cover letter document" 
+                                 class="w-10 h-10 object-cover rounded"
+                                 onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                            <div class="flex-1">
+                                <p class="font-medium text-text-primary text-sm">CoverLetter_Generic.docx</p>
+                                <p class="text-xs text-primary">Currently Processing</p>
+                            </div>
+                            <div class="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+                        </div>
+
+                        <div class="flex items-center space-x-3 p-3 bg-secondary-100 rounded-lg border border-secondary-200">
+                            <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=400&auto=format&fit=crop" 
+                                 alt="Resume document" 
+                                 class="w-10 h-10 object-cover rounded"
+                                 onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                            <div class="flex-1">
+                                <p class="font-medium text-text-primary text-sm">Resume_Tech_Old.pdf</p>
+                                <p class="text-xs text-secondary">Queued</p>
+                            </div>
+                            <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Optimization Tips -->
+                <section class="card p-6">
+                    <h2 class="text-lg font-semibold text-text-primary mb-4">
+                        <svg class="w-5 h-5 text-warning inline mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                        Optimization Tips
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-warning-light rounded-lg border border-warning">
+                            <h3 class="font-medium text-warning mb-2">ATS Compatibility</h3>
+                            <p class="text-sm text-text-secondary">Our AI ensures your resume passes through Applicant Tracking Systems by optimizing keywords and formatting.</p>
+                        </div>
+                        
+                        <div class="p-4 bg-accent-50 rounded-lg border border-accent">
+                            <h3 class="font-medium text-accent mb-2">Skills Enhancement</h3>
+                            <p class="text-sm text-text-secondary">We're identifying and highlighting your most relevant skills based on current industry trends.</p>
+                        </div>
+                        
+                        <div class="p-4 bg-primary-50 rounded-lg border border-primary">
+                            <h3 class="font-medium text-primary mb-2">Experience Consolidation</h3>
+                            <p class="text-sm text-text-secondary">Multiple resume versions will be merged into one cohesive professional story.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Support Contact -->
+                <section class="card p-6 text-center">
+                    <h2 class="text-lg font-semibold text-text-primary mb-4">Need Help?</h2>
+                    <p class="text-sm text-text-secondary mb-4">
+                        If processing takes longer than expected or you encounter any issues, our support team is here to help.
+                    </p>
+                    <button class="btn-secondary w-full hover-scale">
+                        Contact Support
+                    </button>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Processing Complete Modal (Hidden by default) -->
+    <div id="processing-complete-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-surface rounded-lg p-8 max-w-md mx-4 animate-scale-in">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-text-primary mb-4">Processing Complete!</h3>
+                <p class="text-text-secondary mb-6">
+                    Your optimized resume is ready for review. You can now make final adjustments and download your ATS-friendly resume.
+                </p>
+                <a href="resume_review_optimization.html" class="btn-primary w-full hover-scale">
+                    Review Your Resume
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Progress Animation -->
+    <script>
+        // Simulate processing progress
+        let progress = 50;
+        let timeRemaining = 150; // seconds
+        
+        const progressCircle = document.getElementById('progress-circle');
+        const progressPercentage = document.getElementById('progress-percentage');
+        const timeRemainingElement = document.getElementById('time-remaining');
+        const modal = document.getElementById('processing-complete-modal');
+        
+        function updateProgress() {
+            if (progress < 100) {
+                progress += Math.random() * 5;
+                timeRemaining -= Math.random() * 10;
+                
+                if (progress > 100) progress = 100;
+                if (timeRemaining < 0) timeRemaining = 0;
+                
+                // Update circle
+                const circumference = 2 * Math.PI * 80;
+                const offset = circumference - (progress / 100) * circumference;
+                progressCircle.style.strokeDashoffset = offset;
+                
+                // Update percentage
+                progressPercentage.textContent = Math.round(progress) + '%';
+                
+                // Update time
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = Math.floor(timeRemaining % 60);
+                timeRemainingElement.textContent = `${minutes} minutes ${seconds} seconds`;
+                
+                // Continue updating
+                setTimeout(updateProgress, 2000 + Math.random() * 3000);
+            } else {
+                // Processing complete
+                progressPercentage.textContent = '100%';
+                timeRemainingElement.textContent = 'Complete!';
+                
+                // Show completion modal after a short delay
+                setTimeout(() => {
+                    modal.classList.remove('hidden');
+                }, 1000);
+            }
+        }
+        
+        // Start progress simulation
+        updateProgress();
+        
+        // Close modal when clicking outside
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+<script id="dhws-elementInspector" src="../public/dhws-web-inspector.js"></script>
+<script id="dhws-errorTracker" src="../public/dhws-error-tracker.js"></script>
+</body>
+</html>

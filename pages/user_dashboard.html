@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - Magic Resume</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <meta name="description" content="Manage your resume optimization projects and track your ATS scores from your personal dashboard.">
+</head>
+<body class="bg-background text-text-primary">
+    <!-- Global Header Navigation -->
+    <header class="sticky top-0 z-50 bg-surface/95 backdrop-blur-sm border-b border-border">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="landing_page.html" class="flex items-center space-x-2">
+                        <svg class="w-8 h-8 text-primary" viewBox="0 0 32 32" fill="currentColor">
+                            <path d="M16 2L20 6H28V26H4V6H12L16 2Z"/>
+                            <path d="M8 12H24M8 16H20M8 20H16" stroke="white" stroke-width="1.5" fill="none"/>
+                        </svg>
+                        <span class="text-xl font-semibold text-text-primary">Magic Resume</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="user_dashboard.html" class="text-primary font-medium">Dashboard</a>
+                    <a href="file_upload_interface.html" class="text-text-secondary hover:text-primary transition-colors">Upload</a>
+                    <a href="ai_processing_dashboard.html" class="text-text-secondary hover:text-primary transition-colors">Analysis</a>
+                    <a href="resume_review_optimization.html" class="text-text-secondary hover:text-primary transition-colors">Optimize</a>
+                </div>
+
+                <!-- User Actions -->
+                <div class="flex items-center space-x-4">
+                    <!-- Notifications -->
+                    <button class="relative p-2 rounded-lg hover:bg-secondary-100 transition-colors touch-target">
+                        <svg class="w-6 h-6 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM10.07 2.82l3.12 3.12M7.05 5.84L10.17 8.96M2.82 10.07l3.12 3.12M5.84 7.05L8.96 10.17"/>
+                        </svg>
+                        <span class="absolute top-1 right-1 w-2 h-2 bg-accent rounded-full"></span>
+                    </button>
+
+                    <!-- Profile Dropdown -->
+                    <div class="relative">
+                        <button class="flex items-center space-x-2 p-2 rounded-lg hover:bg-secondary-100 transition-colors touch-target" id="profile-menu-btn">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?q=80&w=400&auto=format&fit=crop" 
+                                 alt="User profile" 
+                                 class="w-8 h-8 rounded-full object-cover"
+                                 onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                            <span class="hidden md:block text-sm font-medium text-text-primary">Sarah Johnson</span>
+                            <svg class="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+
+                        <!-- Dropdown Menu -->
+                        <div class="absolute right-0 mt-2 w-48 bg-surface rounded-lg shadow-lg border border-border hidden" id="profile-menu">
+                            <div class="py-1">
+                                <a href="#" class="block px-4 py-2 text-sm text-text-secondary hover:bg-secondary-100 transition-colors">Account Settings</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-text-secondary hover:bg-secondary-100 transition-colors">Billing</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-text-secondary hover:bg-secondary-100 transition-colors">Help Center</a>
+                                <hr class="my-1 border-border">
+                                <a href="landing_page.html" class="block px-4 py-2 text-sm text-text-secondary hover:bg-secondary-100 transition-colors">Sign Out</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <button class="md:hidden p-2 rounded-lg hover:bg-secondary-100 transition-colors" id="mobile-menu-btn">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="px-2 pt-2 pb-3 space-y-1 bg-surface border-t border-border">
+                    <a href="user_dashboard.html" class="block px-3 py-2 text-primary font-medium">Dashboard</a>
+                    <a href="file_upload_interface.html" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Upload</a>
+                    <a href="ai_processing_dashboard.html" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Analysis</a>
+                    <a href="resume_review_optimization.html" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Optimize</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="flex min-h-screen">
+        <!-- Sidebar (Desktop) / Drawer (Mobile) -->
+        <aside class="hidden lg:flex lg:flex-col lg:w-64 bg-surface border-r border-border">
+            <div class="flex-1 flex flex-col pt-6 pb-4 overflow-y-auto">
+                <nav class="mt-5 flex-1 px-4 space-y-1">
+                    <a href="user_dashboard.html" class="bg-primary-50 text-primary group flex items-center px-3 py-2 text-sm font-medium rounded-lg">
+                        <svg class="text-primary mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/>
+                        </svg>
+                        Dashboard
+                    </a>
+                    <a href="file_upload_interface.html" class="text-text-secondary hover:bg-secondary-100 hover:text-text-primary group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors">
+                        <svg class="text-text-secondary mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                        </svg>
+                        Upload Files
+                    </a>
+                    <a href="#" class="text-text-secondary hover:bg-secondary-100 hover:text-text-primary group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors">
+                        <svg class="text-text-secondary mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        Settings
+                    </a>
+                    <a href="#" class="text-text-secondary hover:bg-secondary-100 hover:text-text-primary group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors">
+                        <svg class="text-text-secondary mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                        </svg>
+                        Billing
+                    </a>
+                    <a href="#" class="text-text-secondary hover:bg-secondary-100 hover:text-text-primary group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors">
+                        <svg class="text-text-secondary mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        Help
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 overflow-hidden">
+            <!-- Breadcrumb -->
+            <div class="bg-surface border-b border-border px-4 sm:px-6 lg:px-8 py-4">
+                <nav class="flex" aria-label="Breadcrumb">
+                    <ol class="flex items-center space-x-2">
+                        <li>
+                            <a href="user_dashboard.html" class="text-text-secondary hover:text-primary transition-colors">Dashboard</a>
+                        </li>
+                        <li>
+                            <svg class="w-4 h-4 text-text-tertiary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                        </li>
+                        <li>
+                            <span class="text-text-primary font-medium">My Projects</span>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+
+            <!-- Dashboard Content -->
+            <div class="px-4 sm:px-6 lg:px-8 py-6">
+                <!-- Welcome Section -->
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold text-text-primary mb-2">Welcome back, Sarah!</h1>
+                    <p class="text-text-secondary">Manage your resume optimization projects and track your progress.</p>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="card p-6">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-text-primary">12</p>
+                                <p class="text-sm text-text-secondary">Total Resumes</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card p-6">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-text-primary">+35%</p>
+                                <p class="text-sm text-text-secondary">Avg. Score Improvement</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card p-6">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-warning-light rounded-lg flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-text-primary">47</p>
+                                <p class="text-sm text-text-secondary">Files Processed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <a href="file_upload_interface.html" class="btn-primary flex items-center justify-center hover-scale">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                        </svg>
+                        Create New Resume
+                    </a>
+                    <a href="file_upload_interface.html" class="btn-secondary flex items-center justify-center hover-scale">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                        </svg>
+                        Upload Files
+                    </a>
+                </div>
+
+                <!-- Filter and Search -->
+                <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                    <div class="flex-1">
+                        <div class="relative">
+                            <input type="text" placeholder="Search projects..." class="input pl-10">
+                            <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <select class="input w-auto">
+                            <option>Sort by Date</option>
+                            <option>Sort by Score</option>
+                            <option>Sort by Name</option>
+                        </select>
+                        <button class="btn-secondary px-4">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Project Card 1 -->
+                    <div class="card p-6 hover-scale">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?auto=compress&cs=tinysrgb&w=400" 
+                                     alt="Resume preview" 
+                                     class="w-12 h-12 object-cover rounded-lg border border-border"
+                                     onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                                <div>
+                                    <h3 class="font-semibold text-text-primary">Software Engineer Resume</h3>
+                                    <p class="text-sm text-text-secondary">Created 2 days ago</p>
+                                </div>
+                            </div>
+                            <div class="relative">
+                                <button class="p-1 rounded hover:bg-secondary-100 transition-colors">
+                                    <svg class="w-5 h-5 text-text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm text-text-secondary">ATS Score</span>
+                                <span class="text-sm font-medium text-accent">95/100</span>
+                            </div>
+                            <div class="w-full bg-secondary-200 rounded-full h-2">
+                                <div class="bg-accent h-2 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-100 text-accent">
+                                Completed
+                            </span>
+                        </div>
+
+                        <div class="flex gap-2">
+                            <a href="resume_review_optimization.html" class="btn-primary text-sm px-4 py-2 flex-1 text-center">View</a>
+                            <button class="btn-secondary text-sm px-4 py-2">Download</button>
+                            <button class="btn-secondary text-sm px-4 py-2">Duplicate</button>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 2 -->
+                    <div class="card p-6 hover-scale">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://images.pixabay.com/photo/2017/06/20/08/12/maintenance-2424025_960_720.jpg" 
+                                     alt="Resume preview" 
+                                     class="w-12 h-12 object-cover rounded-lg border border-border"
+                                     onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                                <div>
+                                    <h3 class="font-semibold text-text-primary">Marketing Manager Resume</h3>
+                                    <p class="text-sm text-text-secondary">Created 1 week ago</p>
+                                </div>
+                            </div>
+                            <div class="relative">
+                                <button class="p-1 rounded hover:bg-secondary-100 transition-colors">
+                                    <svg class="w-5 h-5 text-text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm text-text-secondary">ATS Score</span>
+                                <span class="text-sm font-medium text-warning">78/100</span>
+                            </div>
+                            <div class="w-full bg-secondary-200 rounded-full h-2">
+                                <div class="bg-warning h-2 rounded-full" style="width: 78%"></div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-warning-light text-warning">
+                                Processing
+                            </span>
+                        </div>
+
+                        <div class="flex gap-2">
+                            <a href="ai_processing_dashboard.html" class="btn-primary text-sm px-4 py-2 flex-1 text-center">View</a>
+                            <button class="btn-secondary text-sm px-4 py-2 opacity-50 cursor-not-allowed" disabled>Download</button>
+                            <button class="btn-secondary text-sm px-4 py-2">Duplicate</button>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3 -->
+                    <div class="card p-6 hover-scale">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=400&auto=format&fit=crop" 
+                                     alt="Resume preview" 
+                                     class="w-12 h-12 object-cover rounded-lg border border-border"
+                                     onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                                <div>
+                                    <h3 class="font-semibold text-text-primary">Data Analyst Resume</h3>
+                                    <p class="text-sm text-text-secondary">Created 2 weeks ago</p>
+                                </div>
+                            </div>
+                            <div class="relative">
+                                <button class="p-1 rounded hover:bg-secondary-100 transition-colors">
+                                    <svg class="w-5 h-5 text-text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm text-text-secondary">ATS Score</span>
+                                <span class="text-sm font-medium text-error">62/100</span>
+                            </div>
+                            <div class="w-full bg-secondary-200 rounded-full h-2">
+                                <div class="bg-error h-2 rounded-full" style="width: 62%"></div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary-200 text-text-secondary">
+                                Draft
+                            </span>
+                        </div>
+
+                        <div class="flex gap-2">
+                            <a href="resume_review_optimization.html" class="btn-primary text-sm px-4 py-2 flex-1 text-center">View</a>
+                            <button class="btn-secondary text-sm px-4 py-2">Download</button>
+                            <button class="btn-secondary text-sm px-4 py-2">Duplicate</button>
+                        </div>
+                    </div>
+
+                    <!-- Empty State Card (for new users) -->
+                    <div class="card p-6 border-2 border-dashed border-secondary-300 text-center hover-scale">
+                        <div class="w-16 h-16 bg-secondary-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold text-text-primary mb-2">Create Your First Resume</h3>
+                        <p class="text-sm text-text-secondary mb-4">Upload your existing resumes and let our AI optimize them for you.</p>
+                        <a href="file_upload_interface.html" class="btn-primary text-sm px-4 py-2">Get Started</a>
+                    </div>
+                </div>
+
+                <!-- Load More Button -->
+                <div class="text-center mt-8">
+                    <button class="btn-secondary px-6 py-3">Load More Projects</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div class="lg:hidden fixed inset-0 z-40 hidden" id="sidebar-overlay">
+        <div class="fixed inset-0 bg-text-primary bg-opacity-50" id="sidebar-backdrop"></div>
+        <div class="fixed inset-y-0 left-0 flex flex-col w-64 bg-surface border-r border-border transform -translate-x-full transition-transform duration-300" id="mobile-sidebar">
+            <div class="flex items-center justify-between p-4 border-b border-border">
+                <span class="text-lg font-semibold text-text-primary">Menu</span>
+                <button class="p-2 rounded-lg hover:bg-secondary-100 transition-colors" id="close-sidebar">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <nav class="flex-1 px-4 py-6 space-y-1">
+                <a href="user_dashboard.html" class="bg-primary-50 text-primary group flex items-center px-3 py-2 text-sm font-medium rounded-lg">
+                    <svg class="text-primary mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="file_upload_interface.html" class="text-text-secondary hover:bg-secondary-100 hover:text-text-primary group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors">
+                    <svg class="text-text-secondary mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                    </svg>
+                    Upload Files
+                </a>
+                <a href="#" class="text-text-secondary hover:bg-secondary-100 hover:text-text-primary group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors">
+                    <svg class="text-text-secondary mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    Settings
+                </a>
+                <a href="#" class="text-text-secondary hover:bg-secondary-100 hover:text-text-primary group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors">
+                    <svg class="text-text-secondary mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                    </svg>
+                    Billing
+                </a>
+                <a href="#" class="text-text-secondary hover:bg-secondary-100 hover:text-text-primary group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors">
+                    <svg class="text-text-secondary mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Help
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Profile dropdown toggle
+        document.getElementById('profile-menu-btn').addEventListener('click', function() {
+            const profileMenu = document.getElementById('profile-menu');
+            profileMenu.classList.toggle('hidden');
+        });
+
+        // Close profile dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const profileBtn = document.getElementById('profile-menu-btn');
+            const profileMenu = document.getElementById('profile-menu');
+            
+            if (!profileBtn.contains(event.target) && !profileMenu.contains(event.target)) {
+                profileMenu.classList.add('hidden');
+            }
+        });
+
+        // Mobile sidebar functionality
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const mobileSidebar = document.getElementById('mobile-sidebar');
+        const sidebarBackdrop = document.getElementById('sidebar-backdrop');
+        const closeSidebar = document.getElementById('close-sidebar');
+
+        // Show sidebar on mobile menu click (if needed)
+        function showMobileSidebar() {
+            sidebarOverlay.classList.remove('hidden');
+            setTimeout(() => {
+                mobileSidebar.classList.remove('-translate-x-full');
+            }, 10);
+        }
+
+        function hideMobileSidebar() {
+            mobileSidebar.classList.add('-translate-x-full');
+            setTimeout(() => {
+                sidebarOverlay.classList.add('hidden');
+            }, 300);
+        }
+
+        if (closeSidebar) {
+            closeSidebar.addEventListener('click', hideMobileSidebar);
+        }
+
+        if (sidebarBackdrop) {
+            sidebarBackdrop.addEventListener('click', hideMobileSidebar);
+        }
+
+        // Search functionality
+        const searchInput = document.querySelector('input[placeholder="Search projects..."]');
+        if (searchInput) {
+            searchInput.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                const projectCards = document.querySelectorAll('.card');
+                
+                projectCards.forEach(card => {
+                    const projectName = card.querySelector('h3');
+                    if (projectName) {
+                        const name = projectName.textContent.toLowerCase();
+                        if (name.includes(searchTerm)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+<script id="dhws-elementInspector" src="../public/dhws-web-inspector.js"></script>
+<script id="dhws-errorTracker" src="../public/dhws-error-tracker.js"></script>
+</body>
+</html>

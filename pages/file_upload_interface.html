@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Files - Magic Resume</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <meta name="description" content="Upload your resumes and cover letters for AI-powered optimization and analysis.">
+</head>
+<body class="bg-background text-text-primary">
+    <!-- Global Header Navigation -->
+    <header class="sticky top-0 z-50 bg-surface/95 backdrop-blur-sm border-b border-border">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="landing_page.html" class="flex items-center space-x-2">
+                        <svg class="w-8 h-8 text-primary" viewBox="0 0 32 32" fill="currentColor">
+                            <path d="M16 2L20 6H28V26H4V6H12L16 2Z"/>
+                            <path d="M8 12H24M8 16H20M8 20H16" stroke="white" stroke-width="1.5" fill="none"/>
+                        </svg>
+                        <span class="text-xl font-semibold text-text-primary">Magic Resume</span>
+                    </a>
+                </div>
+
+                <!-- Progress Indicator -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-sm font-medium">1</div>
+                        <span class="text-sm font-medium text-primary">Upload</span>
+                    </div>
+                    <div class="w-8 h-0.5 bg-secondary-200"></div>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-secondary-200 rounded-full flex items-center justify-center text-secondary text-sm font-medium">2</div>
+                        <span class="text-sm text-secondary">Analyze</span>
+                    </div>
+                    <div class="w-8 h-0.5 bg-secondary-200"></div>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-secondary-200 rounded-full flex items-center justify-center text-secondary text-sm font-medium">3</div>
+                        <span class="text-sm text-secondary">Review</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="landing_page.html" class="text-text-secondary hover:text-primary transition-colors">Home</a>
+                    <a href="user_dashboard.html" class="text-text-secondary hover:text-primary transition-colors">Dashboard</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 rounded-lg hover:bg-secondary-100 transition-colors" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="px-2 pt-2 pb-3 space-y-1 bg-surface border-t border-border">
+                    <a href="landing_page.html" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Home</a>
+                    <a href="user_dashboard.html" class="block px-3 py-2 text-text-secondary hover:text-primary transition-colors">Dashboard</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <section class="bg-surface border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <nav class="flex items-center space-x-2 text-sm">
+                <a href="landing_page.html" class="text-text-secondary hover:text-primary transition-colors">Home</a>
+                <svg class="w-4 h-4 text-text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+                <span class="text-primary font-medium">Upload Files</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Mobile Progress Indicator -->
+    <section class="md:hidden bg-primary-50 border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <span class="text-sm font-medium text-primary">Step 1 of 3: Upload Files</span>
+                <div class="flex space-x-1">
+                    <div class="w-6 h-1 bg-primary rounded-full"></div>
+                    <div class="w-6 h-1 bg-secondary-200 rounded-full"></div>
+                    <div class="w-6 h-1 bg-secondary-200 rounded-full"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-8">
+            <!-- Upload Section -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Page Header -->
+                <div class="text-center lg:text-left">
+                    <h1 class="text-3xl sm:text-4xl font-bold text-text-primary mb-4">
+                        Upload Your Documents
+                    </h1>
+                    <p class="text-lg text-text-secondary max-w-2xl">
+                        Upload your resumes, cover letters, and any other career documents. Our AI will analyze and consolidate them into one optimized resume.
+                    </p>
+                </div>
+
+                <!-- Upload Zone -->
+                <div class="card p-8 border-2 border-dashed border-secondary-300 hover:border-primary transition-colors" id="upload-zone">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary-100 rounded-lg flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-text-primary mb-2">
+                            Drag and drop your files here
+                        </h3>
+                        <p class="text-text-secondary mb-6">
+                            or click to browse and select files from your device
+                        </p>
+                        <button class="btn-primary hover-scale touch-target" id="browse-btn">
+                            <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                            </svg>
+                            Browse Files
+                        </button>
+                        <input type="file" id="file-input" class="hidden" multiple accept=".pdf,.doc,.docx">
+                    </div>
+                </div>
+
+                <!-- Supported Formats -->
+                <div class="bg-accent-50 border border-accent-100 rounded-lg p-4">
+                    <div class="flex items-start space-x-3">
+                        <svg class="w-5 h-5 text-accent mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                        <div>
+                            <h4 class="font-medium text-accent mb-1">Supported File Formats</h4>
+                            <div class="flex flex-wrap gap-2 text-sm text-accent">
+                                <span class="bg-accent-100 px-2 py-1 rounded">PDF</span>
+                                <span class="bg-accent-100 px-2 py-1 rounded">DOC</span>
+                                <span class="bg-accent-100 px-2 py-1 rounded">DOCX</span>
+                            </div>
+                            <p class="text-sm text-accent mt-2">Maximum file size: 10MB per file</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- File Queue -->
+                <div id="file-queue" class="space-y-4">
+                    <h3 class="text-lg font-semibold text-text-primary">Uploaded Files</h3>
+                    <div id="file-list" class="space-y-3">
+                        <!-- Files will be dynamically added here -->
+                    </div>
+                    <div id="empty-state" class="text-center py-8 text-text-secondary">
+                        <svg class="w-12 h-12 mx-auto mb-4 text-text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        <p>No files uploaded yet. Start by uploading your documents above.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="mt-8 lg:mt-0 space-y-6">
+                <!-- Upload Summary -->
+                <div class="card p-6">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4">Upload Summary</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-text-secondary">Files uploaded:</span>
+                            <span class="font-medium text-text-primary" id="file-count">0</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-text-secondary">Total size:</span>
+                            <span class="font-medium text-text-primary" id="total-size">0 MB</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-text-secondary">Status:</span>
+                            <span class="text-warning font-medium" id="upload-status">Ready to upload</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tips -->
+                <div class="card p-6">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4">
+                        <svg class="w-5 h-5 inline mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                        Tips for Best Results
+                    </h3>
+                    <ul class="space-y-2 text-sm text-text-secondary">
+                        <li class="flex items-start space-x-2">
+                            <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Upload all versions of your resume for comprehensive analysis</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Include cover letters to extract additional skills and experience</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Ensure files are text-readable (not scanned images)</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Upload at least 2 documents for better consolidation</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Action Button -->
+                <button class="btn-primary w-full text-lg py-4 hover-scale touch-target disabled:opacity-50 disabled:cursor-not-allowed" 
+                        id="analyze-btn" 
+                        disabled
+                        onclick="window.location.href='ai_processing_dashboard.html'">
+                    <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                    </svg>
+                    Analyze Documents
+                </button>
+
+                <!-- Security Notice -->
+                <div class="bg-secondary-50 border border-secondary-200 rounded-lg p-4">
+                    <div class="flex items-start space-x-3">
+                        <svg class="w-5 h-5 text-secondary mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                        </svg>
+                        <div>
+                            <h4 class="font-medium text-secondary mb-1">Your Privacy Matters</h4>
+                            <p class="text-sm text-secondary">
+                                Your documents are processed securely and deleted after analysis. We never store or share your personal information.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Drag Overlay -->
+    <div id="drag-overlay" class="fixed inset-0 bg-primary/20 backdrop-blur-sm z-40 hidden">
+        <div class="flex items-center justify-center h-full">
+            <div class="bg-surface rounded-lg p-8 shadow-lg text-center">
+                <svg class="w-16 h-16 text-primary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                </svg>
+                <h3 class="text-xl font-semibold text-text-primary mb-2">Drop files here</h3>
+                <p class="text-text-secondary">Release to upload your documents</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for File Upload Functionality -->
+    <script>
+        // File upload state
+        let uploadedFiles = [];
+        let totalSize = 0;
+
+        // DOM elements
+        const uploadZone = document.getElementById('upload-zone');
+        const fileInput = document.getElementById('file-input');
+        const browseBtn = document.getElementById('browse-btn');
+        const fileList = document.getElementById('file-list');
+        const emptyState = document.getElementById('empty-state');
+        const dragOverlay = document.getElementById('drag-overlay');
+        const analyzeBtn = document.getElementById('analyze-btn');
+        const fileCount = document.getElementById('file-count');
+        const totalSizeEl = document.getElementById('total-size');
+        const uploadStatus = document.getElementById('upload-status');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Mobile menu toggle
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // File input change handler
+        fileInput.addEventListener('change', handleFileSelect);
+        browseBtn.addEventListener('click', () => fileInput.click());
+
+        // Drag and drop handlers
+        uploadZone.addEventListener('dragover', handleDragOver);
+        uploadZone.addEventListener('dragleave', handleDragLeave);
+        uploadZone.addEventListener('drop', handleDrop);
+
+        // Global drag handlers
+        document.addEventListener('dragover', handleGlobalDragOver);
+        document.addEventListener('dragleave', handleGlobalDragLeave);
+        document.addEventListener('drop', handleGlobalDrop);
+
+        function handleFileSelect(e) {
+            const files = Array.from(e.target.files);
+            processFiles(files);
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            uploadZone.classList.add('border-primary', 'bg-primary-50');
+        }
+
+        function handleDragLeave(e) {
+            e.preventDefault();
+            uploadZone.classList.remove('border-primary', 'bg-primary-50');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            uploadZone.classList.remove('border-primary', 'bg-primary-50');
+            const files = Array.from(e.dataTransfer.files);
+            processFiles(files);
+        }
+
+        function handleGlobalDragOver(e) {
+            e.preventDefault();
+            dragOverlay.classList.remove('hidden');
+        }
+
+        function handleGlobalDragLeave(e) {
+            if (e.clientX === 0 && e.clientY === 0) {
+                dragOverlay.classList.add('hidden');
+            }
+        }
+
+        function handleGlobalDrop(e) {
+            e.preventDefault();
+            dragOverlay.classList.add('hidden');
+        }
+
+        function processFiles(files) {
+            files.forEach(file => {
+                if (validateFile(file)) {
+                    addFileToQueue(file);
+                }
+            });
+            updateSummary();
+        }
+
+        function validateFile(file) {
+            const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+            const maxSize = 10 * 1024 * 1024; // 10MB
+
+            if (!allowedTypes.includes(file.type)) {
+                showError(`${file.name}: Unsupported file format. Please use PDF, DOC, or DOCX.`);
+                return false;
+            }
+
+            if (file.size > maxSize) {
+                showError(`${file.name}: File size exceeds 10MB limit.`);
+                return false;
+            }
+
+            return true;
+        }
+
+        function addFileToQueue(file) {
+            const fileId = Date.now() + Math.random();
+            uploadedFiles.push({ id: fileId, file: file, status: 'ready' });
+            totalSize += file.size;
+
+            const fileCard = createFileCard(fileId, file);
+            fileList.appendChild(fileCard);
+            emptyState.style.display = 'none';
+
+            // Simulate upload progress
+            simulateUpload(fileId);
+        }
+
+        function createFileCard(fileId, file) {
+            const card = document.createElement('div');
+            card.className = 'card p-4 border-l-4 border-secondary-300';
+            card.id = `file-${fileId}`;
+
+            const fileIcon = getFileIcon(file.type);
+            const fileSize = formatFileSize(file.size);
+
+            card.innerHTML = `
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3 flex-1">
+                        <div class="w-10 h-10 bg-secondary-100 rounded-lg flex items-center justify-center">
+                            ${fileIcon}
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="font-medium text-text-primary truncate">${file.name}</p>
+                            <p class="text-sm text-text-secondary">${fileSize}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div class="status-indicator">
+                            <span class="text-sm text-warning">Processing...</span>
+                        </div>
+                        <button class="p-2 text-text-tertiary hover:text-error transition-colors" onclick="removeFile(${fileId})">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <div class="w-full bg-secondary-200 rounded-full h-2">
+                        <div class="progress-bar bg-primary h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        function getFileIcon(fileType) {
+            if (fileType === 'application/pdf') {
+                return '<svg class="w-5 h-5 text-error" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/></svg>';
+            } else {
+                return '<svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/></svg>';
+            }
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function simulateUpload(fileId) {
+            const card = document.getElementById(`file-${fileId}`);
+            const progressBar = card.querySelector('.progress-bar');
+            const statusIndicator = card.querySelector('.status-indicator');
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 20;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    
+                    // Update status to success
+                    statusIndicator.innerHTML = '<span class="text-sm text-accent">Ready</span>';
+                    card.classList.remove('border-secondary-300');
+                    card.classList.add('border-accent');
+                    
+                    // Update file status
+                    const fileIndex = uploadedFiles.findIndex(f => f.id === fileId);
+                    if (fileIndex !== -1) {
+                        uploadedFiles[fileIndex].status = 'ready';
+                    }
+                    
+                    updateSummary();
+                }
+                progressBar.style.width = `${progress}%`;
+            }, 200);
+        }
+
+        function removeFile(fileId) {
+            const fileIndex = uploadedFiles.findIndex(f => f.id === fileId);
+            if (fileIndex !== -1) {
+                totalSize -= uploadedFiles[fileIndex].file.size;
+                uploadedFiles.splice(fileIndex, 1);
+            }
+
+            const card = document.getElementById(`file-${fileId}`);
+            if (card) {
+                card.remove();
+            }
+
+            if (uploadedFiles.length === 0) {
+                emptyState.style.display = 'block';
+            }
+
+            updateSummary();
+        }
+
+        function updateSummary() {
+            fileCount.textContent = uploadedFiles.length;
+            totalSizeEl.textContent = formatFileSize(totalSize);
+
+            const readyFiles = uploadedFiles.filter(f => f.status === 'ready').length;
+            
+            if (uploadedFiles.length === 0) {
+                uploadStatus.textContent = 'Ready to upload';
+                uploadStatus.className = 'text-warning font-medium';
+                analyzeBtn.disabled = true;
+            } else if (readyFiles === uploadedFiles.length && uploadedFiles.length >= 1) {
+                uploadStatus.textContent = 'Ready to analyze';
+                uploadStatus.className = 'text-accent font-medium';
+                analyzeBtn.disabled = false;
+            } else {
+                uploadStatus.textContent = 'Processing files...';
+                uploadStatus.className = 'text-warning font-medium';
+                analyzeBtn.disabled = true;
+            }
+        }
+
+        function showError(message) {
+            // Create error notification
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'fixed top-20 right-4 bg-error-light border border-error text-error px-4 py-3 rounded-lg shadow-lg z-50 max-w-sm';
+            errorDiv.innerHTML = `
+                <div class="flex items-start space-x-2">
+                    <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                    </svg>
+                    <div class="flex-1">
+                        <p class="text-sm">${message}</p>
+                    </div>
+                    <button onclick="this.parentElement.parentElement.remove()" class="text-error hover:text-error-600">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(errorDiv);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (errorDiv.parentElement) {
+                    errorDiv.remove();
+                }
+            }, 5000);
+        }
+
+        // Initialize
+        updateSummary();
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+<script id="dhws-elementInspector" src="../public/dhws-web-inspector.js"></script>
+<script id="dhws-errorTracker" src="../public/dhws-error-tracker.js"></script>
+</body>
+</html>
